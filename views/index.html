@@ -2,49 +2,64 @@
 
 <html>
 
-   <head>
-      <title>Timestamp Microservice</title>
-      <link rel="shortcut icon" href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" type="image/x-icon"/>
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-      <link href="style.css" rel="stylesheet" type="text/css">
-   </head>
+  <head>
+    <title>Timestamp Microservice</title>
+    <link rel="shortcut icon" href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
 
-   <body>
-
-      <div class="container">
-        <h2>API Project: Timestamp Microservice</h2>
-        <h3>User Stories :</h3>
-        <ol class="user-stories">
-          
-          <li>The API endpoint is <code>GET [project_url]/api/timestamp/:date_string?</code></li>
-          <li>A date string is valid if can be successfully parsed by <code>new Date(date_string)</code>.<br>
-          Note that the unix timestamp needs to be an <strong>integer</strong> (not a string) specifying <strong>milliseconds</strong>.<br> 
-          In our test we will use date strings compliant with ISO-8601 (e.g. <code>"2016-11-20"</code>) because this will ensure an UTC timestamp.</li>
-          <li>If the date string is <strong>empty</strong> it should be equivalent to trigger <code>new Date()</code>, i.e. the service uses the current timestamp.</li>
-          <li>If the date string is <strong>valid</strong> the api returns a JSON having the structure<br><code>{"unix": &lt;date.getTime()&gt;, "utc" : &lt;date.toUTCString()&gt; }</code><br>
-            e.g. <code>{"unix": 1479663089000 ,"utc": "Sun, 20 Nov 2016 17:31:29 GMT"}</code></li>
-          <li>If the date string is <strong>invalid</strong> the api returns a JSON having the structure <br>
-              <code>{"unix": null, "utc" : "Invalid Date" }</code>. It is what you get from the date manipulation functions used above.
-          </li>
-        </ol>
-
-        <h3>Example Usage:</h3>
-        <ul>
-          <li>
-            <code>GET [project url]/api/timestamp/2015-12-25</code></li>
-          <li><code>GET project url]/api/timestamp/1450137600</code></li>
+  <body>
+  
+    <div class="container">
+      <h2>Timestamp Microservice</h2>
+      
+      <p class="text">To use this API, simply add a valid date string (either in milliseconds or in the format YYYY-MM-DD) 
+      to the API's URL, like this: <code>https://timestamp-service-lb.glitch.me/api/timestamp/&lt;date_string&gt;</code>. 
+      The API will return a JSON object containing the time in UNIX and UTC.</p>
+      
+      <p class="text">If you submit a blank query, the API will respond with a JSON object for the current date.</p>
+      <p class="text">If you submit an invalid date, the API will return: <code>{"error": "Invalid Date"}</code>.</p>
+      
+      <h3>Example:</h3>
+        <ul style="text-align: left">
+          <li>YYYY-MM-DD format: <a target="_blank" href="https://timestamp-service-lb.glitch.me/api/timestamp/2015-12-15">https://timestamp-service-lb.glitch.me/api/timestamp/2015-12-15</a></li>
+          <li>Milliseconds format: <a target="_blank" href="https://timestamp-service-lb.glitch.me/api/timestamp/1556464676350">https://timestamp-service-lb.glitch.me/api/timestamp/1556464676350</a></li>
         </ul>
 
-        <h3>Example Output:</h3>
-        <p>
-          <code>{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}</code>
-        </p>
-      </div>
-      <div class="footer">
-        <p>
-          by <a href="http://www.freecodecamp.com/">freeCodeCamp</a> | <a href="https://hyperdev.com/#!/remix/FCC_API_timestamp_bplate/8338be2-a353-4892-8a0d-6295e4f12eb5">Click here to Remix</a>
-        </p>
-      </div>
-   </body>
+      <h3>Outputs:</h3>
+        <ul class="text">
+          <li>YYYY-MM-DD format: <code>{"unix":1450137600000, "utc":"Tue, 15 Dec 2015 00:00:00 GMT"}</code></li>
+          <li>Milliseconds format: <code>{"unix":1556464676350, "utc":"Sun, 28 Apr 2019 15:17:56 GMT"}</code></li>
+        </ul>
+      
+      <p class="text" style="margin-top: 2em;">Alternatively you can also write the date string in the input box below and you will get the same result:</p>
+      
+      <form id="dateForm">
+        <input type="text" id="input" name="dateString" placeholder="YYYY-MM-DD or milliseconds">
+        <button type="submit" id="submit">Submit</button>
+      </form>
+    
+    </div>
+  
+    <script>
+      let timestamp = document.createElement('code');
+      document.querySelector(".container").appendChild(timestamp);
+      timestamp.style.display = "none";
+      
+      document.getElementById("dateForm").addEventListener("submit", e => {
+        e.preventDefault();
+        const data = document.querySelector("#input").value;
+        
+        fetch("/api/timestamp/"+ data)
+        .then(res => res.json())
+        .then(data => {
+          timestamp.style.display = "";
+          timestamp.innerText = JSON.stringify(data);  
+        })
+      });
+    </script>
 
+  </body>    
+    
 </html>

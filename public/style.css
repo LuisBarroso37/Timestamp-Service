@@ -1,42 +1,44 @@
-/****** Main Styling ******/
-
 body {
 	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
+	font-size: 1em;
 	color: #222;
-	background-color: #FaFaFa;
-	text-align: center;
+	background-color: #EEE8AA;
 	line-height: 1.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
-	padding: 0;
-	margin-top: 40px;
+  max-width: 750px;
+	padding: 1em 3em;
+  border: 2px black solid;
+  background: #c3f3f7;
+  text-align: center;
+  box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,.25),
+              0.125em 0.125em 0.25em rgba(0,0,0,.15);
+}
+
+.text{
+  text-align: justify;
+}
+
+h2 {
+  margin-top: -.1em;
 }
 
 h3 {
-  margin-top: 30px;
+  margin-top: 1.875em;
 }
 
-.footer {
-	margin-top: 40px;
-}
-
-.user-stories {
-  position: relative;
-  text-align: justify;
-  max-width: 700px;
-  margin: 15px auto;
-}
 code {
   font-family: monospace;
-  padding: 2px;
+  padding: .15em;
   color: black;
   background-color: #fff;
 }
-ol {
-	list-style-position: outside;
-}
+
 ul {
 	list-style-type: none;
 }
@@ -44,10 +46,20 @@ ul {
 li {
   margin-bottom: 0.5em;
 }
-.user-stories li {
-  margin-bottom: 1em;
-}
 
 a {
-	color: #2574A9;
+  color:  #0000FF;
+}
+
+#input {
+	width: 200px;
+  padding: .1em .5em;
+}
+
+button {
+  padding: .2em .4em;
+  border-radius: 2px;
+  border: 2px #BDB76B solid;
+  background: #EEE8AA;
+  cursor: pointer;
 }
