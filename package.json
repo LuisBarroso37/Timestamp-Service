@@ -1,7 +1,8 @@
 {
-  "name": "fcc-api-projects-boilerplate",
+  "name": "Timestamp-Microservice",
+  "author": "Luis Barroso",
   "version": "0.0.1",
-  "description": "An FCC Backend Challenge",
+  "description": "First project for freeCodeCamp's APIs & Microservices Certification",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -11,7 +12,7 @@
     "cors": "^2.8.5"
   },
   "engines": {
-    "node": "4.4.5"
+    "node": "^10.13.1"
   },
   "repository": {
     "type": "git",
