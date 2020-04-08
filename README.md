@@ -16,3 +16,5 @@ e.g. `{"unix": 1479663089000 ,"utc": "Sun, 20 Nov 2016 17:31:29 GMT"}`.
 
 #### Example output:
 * {"unix": 1450137600000, "utc": "Tue, 15 Dec 2015 00:00:00 GMT"}
+
+[screencapture-timestamp-service-lb-glitch-me-2020-04-08-20_24_13.pdf](https://github.com/LuisBarroso37/Timestamp-Service/files/4452216/screencapture-timestamp-service-lb-glitch-me-2020-04-08-20_24_13.pdf)
